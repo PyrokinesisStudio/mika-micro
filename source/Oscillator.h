@@ -32,19 +32,20 @@ public:
 		crossfading = false;
 		currentWaveformMix = 1.0;
 	}
-	double Next(double dt, double frequency);
+	double Next(double dt, double frequency, double phaseOffset);
 
 private:
 	double Blep(double phase);
 	double GeneratePulse(double width);
 	double Get(EWaveforms waveform);
-	void UpdatePhase(double dt, double frequency);
+	void UpdatePhase(double dt, double frequency, double phaseOffset);
 
 	EWaveforms previousWaveform = kNoWaveform;
 	EWaveforms currentWaveform = kSine;
 	bool crossfading = false;
 	double currentWaveformMix = 1.0;
 
+	double basePhase = 0.0;
 	double phase = 0.0;
 	double phaseIncrement = 0.0;
 	double triCurrent = 0.0;

@@ -51,16 +51,19 @@ double Oscillator::Get(EWaveforms waveform)
 	}
 }
 
-void Oscillator::UpdatePhase(double dt, double frequency)
+void Oscillator::UpdatePhase(double dt, double frequency, double phaseOffset)
 {
 	phaseIncrement = frequency * dt;
-	phase += phaseIncrement;
+	basePhase += phaseIncrement;
+	while (basePhase > 1.0) basePhase -= 1.0;
+	phase = basePhase + phaseOffset;
 	while (phase > 1.0) phase -= 1.0;
+	while (phase < 0.0) phase += 1.0;
 }
 
-double Oscillator::Next(double dt, double frequency)
+double Oscillator::Next(double dt, double frequency, double phaseOffset)
 {
-	UpdatePhase(dt, frequency);
+	UpdatePhase(dt, frequency, phaseOffset);
 
 	switch (crossfading)
 	{

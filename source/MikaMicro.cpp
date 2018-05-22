@@ -18,7 +18,7 @@ void MikaMicro::InitParameters()
 
 	// fm
 	GetParam(kFmMode)->InitEnum("FM mode", 0, 3);
-	GetParam(kFmCoarse)->InitInt("FM coarse", 0, 0, 48);
+	GetParam(kFmCoarse)->InitDouble("FM coarse", 0, 0, 48, .01);
 	GetParam(kFmFine)->InitDouble("FM fine", 0.0, -1.0, 1.0, .01);
 
 	// filter
@@ -265,7 +265,7 @@ void MikaMicro::ProcessDoubleReplacing(double** inputs, double** outputs, int nF
 	{
 		FlushMidi(s);
 		SmoothParameters();
-		auto lfoValue = lfo.Next(dt, parameters[kLfoFrequency]);
+		auto lfoValue = lfo.Next(dt, parameters[kLfoFrequency], 0);
 		auto driftValue = GetDriftValue();
 		auto out = 0.0;
 		for (auto &voice : voices) out += voice.Next(dt, lfoValue, driftValue);
