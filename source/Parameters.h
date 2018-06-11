@@ -15,6 +15,7 @@ enum EParameters
 	kFmCoarse,
 	kFmFine,
 	kFilterEnabled,
+	kFilterBlend,
 	kFilterCutoff,
 	kFilterResonance,
 	kFilterKeyTrack,
