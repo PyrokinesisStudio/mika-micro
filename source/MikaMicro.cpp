@@ -25,6 +25,7 @@ void MikaMicro::InitParameters()
 	GetParam(kFilterEnabled)->InitBool("Filter enabled", false);
 	GetParam(kFilterCutoff)->InitDouble("Filter cutoff", 8000.0, 20.0, 8000.0, .01, "hz");
 	GetParam(kFilterResonance)->InitDouble("Filter resonance", 0.0, 0.0, 1.0, .01);
+	GetParam(kFilterSmoothing)->InitDouble("Filter smoothing", 0.0, 0.0, .9, .01);
 	GetParam(kFilterKeyTrack)->InitDouble("Filter key tracking", 0.0, -1.0, 1.0, .01);
 
 	// modulation sources
@@ -95,6 +96,7 @@ void MikaMicro::InitGraphics()
 	pGraphics->AttachControl(new IKnobMultiControl(this, 38 * 4, 62 * 4, kFilterCutoff, &knobRight));
 	pGraphics->AttachControl(new IKnobMultiControl(this, 54 * 4, 62 * 4, kFilterResonance, &knobLeft));
 	pGraphics->AttachControl(new IKnobMultiControl(this, 70 * 4, 62 * 4, kFilterKeyTrack, &knobMiddle));
+	pGraphics->AttachControl(new IKnobMultiControl(this, 86 * 4, 62 * 4, kFilterSmoothing, &knobMiddle));
 
 	// modulation sources
 	pGraphics->AttachControl(new IBitmapControl(this, 121.5 * 4, 22 * 4, &sliderBg));

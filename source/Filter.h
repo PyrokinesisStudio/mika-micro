@@ -7,7 +7,7 @@ class Filter
 {
 public:
 	bool IsSilent() { return low == 0.0; }
-	double Process(double dt, double input, double cutoff, double resonance);
+	double Process(double dt, double input, double cutoff, double resonance, double smoothing);
 
 private:
 	double band = 0.0;

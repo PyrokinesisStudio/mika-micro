@@ -1,6 +1,6 @@
 #include "Filter.h"
 
-double Filter::Process(double dt, double input, double cutoff, double resonance)
+double Filter::Process(double dt, double input, double cutoff, double resonance, double smoothing)
 {
 	// f calculation
 	auto f = 2 * sin(pi * cutoff * dt);
@@ -13,8 +13,9 @@ double Filter::Process(double dt, double input, double cutoff, double resonance)
 	// main processing
 	auto high = input - (low + band * (1.0 - resonance));
 	band += f * high;
+	band -= f * band * smoothing;
 	low += f * band;
 	low = fastAtan(low * .1) * 10.0;
 
-	return low;
+	return low * (1.0 + smoothing);
 }

@@ -138,7 +138,7 @@ double Voice::Next(double dt, double lfoValue, double driftValue)
 	if (filterMix > .01)
 	{
 		auto cutoff = GetFilterCutoff(volEnvValue, modEnvValue, lfoValue, driftValue);
-		auto filterOut = filter.Process(dt, out, cutoff, p[kFilterResonance]);
+		auto filterOut = filter.Process(dt, out, cutoff, p[kFilterResonance], p[kFilterSmoothing]);
 		out = out * (1.0 - filterMix) + filterOut * filterMix;
 	}
 

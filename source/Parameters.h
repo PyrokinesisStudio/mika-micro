@@ -17,6 +17,7 @@ enum EParameters
 	kFilterEnabled,
 	kFilterCutoff,
 	kFilterResonance,
+	kFilterSmoothing,
 	kFilterKeyTrack,
 	kVolEnvA,
 	kVolEnvD,
